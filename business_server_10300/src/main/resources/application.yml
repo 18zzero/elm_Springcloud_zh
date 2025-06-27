@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: business_server_10300
+  datasource:
+    url: jdbc:mysql://localhost:3306/elm?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+resilience4j:
+  circuitbreaker:
+    instances:
+      A: # 断路器实例A
+        registerHealthIndicator: true
+        slidingWindowType: TIME_BASED # 时间窗口
+        slidingWindowSize: 10 # 窗口长度10秒
+        minimumNumberOfCalls: 5 # 最小请求数
+        failureRateThreshold: 30 # 失败率阈值30%
+        waitDurationInOpenState: 5s # OPEN到HALF_OPEN等待5秒
+        permittedNumberOfCallsInHalfOpenState: 3 # HALF_OPEN允许3个请求
+      B: # 断路器实例B
+        registerHealthIndicator: true
+        slidingWindowType: TIME_BASED # 时间窗口
+        slidingWindowSize: 10 # 窗口长度10秒
+        minimumNumberOfCalls: 5 # 最小请求数
+        failureRateThreshold: 50 # 失败率阈值50%
+        slowCallRateThreshold: 30 # 慢调用比例阈值30%
+        slowCallDurationThreshold: 2s # 慢调用时间阈值2秒
+        waitDurationInOpenState: 5s # OPEN到HALF_OPEN等待5秒
+        permittedNumberOfCallsInHalfOpenState: 3 # HALF_OPEN允许3个请求
+
+
+
+        

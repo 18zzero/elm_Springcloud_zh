@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: business_server_10301
+  datasource:
+    url: jdbc:mysql://localhost:3306/elm?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8081
